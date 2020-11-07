@@ -6,12 +6,25 @@ import {expect} from 'chai';
 
 describe('Users',  () => {
 
-    it('GET /Users', (done) => {
-         request.get(`v2/users?access-token=${TOKEN}`).end((err,res) => {
-           expect(res).to.not.be.empty;
-            console.log(err)
-            console.log(res.body)
-            done();
+    it('GET /Users', () => {
+        //  request.get(`v2/users?access-token=${TOKEN}`).end((err,res) => {
+        //    expect(res).to.not.be.empty;
+            // console.log(err)
+            // console.log(res.body)
+            // done(); //done callback to handle the async behaviour
+        return request.get(`v2/users?access-token=${TOKEN}`).then((res) => {
+                expect(res).to.not.be.empty;
         })
     });
+
+    it('GET /Users with query params', () => {
+        const url = `v2/users?access-token=${TOKEN}&page=5&gender=male&status=active`
+        return request.get(url).then((res) => {
+                expect(res.body).to.not.be.empty;
+                res.body.forEach(body => {
+                    expect(body.gender).to.eq('male')
+                    expect(body.status).to.eq('active')                    
+                });            
+       })
+   });
 });
