@@ -74,7 +74,7 @@ describe('Users',  () => {
                     .delete(`v2/users/${userID}`)
                     .set("Authorization", `Bearer ${TOKEN}`)
                     .then((res) => {
-                        expect(res.body).to.eq(null)
+                        expect(res.body).to.be.empty
                     })
        })
     })   
