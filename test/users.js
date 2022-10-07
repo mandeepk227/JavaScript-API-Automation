@@ -46,4 +46,19 @@ describe('Users',  () => {
                     expect(res.body).to.deep.include(data) // to verify all the data at once
                })
    })
+
+   it.only('PUT /user/id', () => {
+        const id = 153
+        const data = {
+            "name" : `Luffy-${Math.floor(Math.random()*999)}`
+        }
+        return request
+                .put(`v2/users/${id}`)
+                .set("Authorization", `Bearer ${TOKEN}`)
+                .send(data)
+                .then((res) => {
+                    console.log(res.body);
+                    expect(res.body.name).to.eq(data.name)
+                })
+   })
 });
