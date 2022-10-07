@@ -27,4 +27,23 @@ describe('Users',  () => {
                 });            
        })
    });
+
+   it('POST /users', () => {
+        const data =  {
+            
+            "name": "Sheela Iyer",
+            "email": `iyer_shee${Math.floor(Math.random()*999)}@brown23.com`,
+            "gender": "male",
+            "status": "inactive"
+          }
+        return request
+               .post('v2/users')
+               .set("Authorization", `Bearer ${TOKEN}`)
+               .send(data)
+               .then((res) => {
+                    console.log(res.body);
+                    expect(res.body.email).to.eq(data.email)
+                    expect(res.body).to.deep.include(data) // to verify all the data at once
+               })
+   })
 });
