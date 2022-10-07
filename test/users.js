@@ -63,7 +63,7 @@ describe('Users',  () => {
    })
 
    it.only('DELETE /users/id', () => {
-    const id = 221
+    const id = 22
         return request
                 .delete(`v2/users/${id}`)
                 .set("Authorization", `Bearer ${TOKEN}`)
