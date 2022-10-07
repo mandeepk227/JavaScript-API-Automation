@@ -47,7 +47,7 @@ describe('Users',  () => {
                })
    })
 
-   it.only('PUT /user/id', () => {
+   it('PUT /users/id', () => {
         const id = 153
         const data = {
             "name" : `Luffy-${Math.floor(Math.random()*999)}`
@@ -59,6 +59,16 @@ describe('Users',  () => {
                 .then((res) => {
                     console.log(res.body);
                     expect(res.body.name).to.eq(data.name)
+                })
+   })
+
+   it.only('DELETE /users/id', () => {
+    const id = 221
+        return request
+                .delete(`v2/users/${id}`)
+                .set("Authorization", `Bearer ${TOKEN}`)
+                .then((res) => {
+                    expect(res.message).to.eq('Resource not found')
                 })
    })
 });
