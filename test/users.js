@@ -62,7 +62,7 @@ describe('Users',  () => {
                 })
    })
 
-   it.only('DELETE /users/id', () => {
+   it('DELETE /users/id', () => {
     const id = 22
         return request
                 .delete(`v2/users/${id}`)
