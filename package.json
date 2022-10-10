@@ -17,5 +17,8 @@
     "chai": "^4.3.6",
     "mocha": "^10.0.0",
     "supertest": "^6.3.0"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.19.1"
   }
 }
