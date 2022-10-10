@@ -6,21 +6,22 @@ import {expect} from 'chai';
 
 describe('user posts', () => {
 
-    it('POST', () => {
-
+    it('POST', async () => {
+        // to use async await method 
         const data = {
             "user_id": 310,
             "title": "My new post",
             "body": "Nwe post"
           }
-        return request
+        const res = await request
         .post('v2/posts')
         .set('Authorization', `Bearer ${TOKEN}`)
-        .send(data)
-        .then((res) => {
-            console.log(res.body)
-            expect(res.body.user_id).to.be.eq(data.user_id)
-        })
+        .send(data);
+        
+        console.log(res.body)
+        expect(res.body.user_id).to.be.eq(data.user_id)
+
+        
     })
 
     
